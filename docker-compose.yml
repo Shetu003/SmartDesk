@@ -32,7 +32,8 @@ services:
     depends_on:
       - kafka
     environment:
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=<your-production-kafka-host>:9092
     networks:
       - backend
 
