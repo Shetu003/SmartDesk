@@ -9,6 +9,8 @@ spring:
       on-profile: default
   kafka:
     bootstrap-servers: localhost:9092
+  jpa:
+    open-in-view: false
 
 ---
 spring:
@@ -17,3 +19,5 @@ spring:
       on-profile: prod
   kafka:
     bootstrap-servers: dummy:9092
+  jpa:
+    open-in-view: false
