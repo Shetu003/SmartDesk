@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SmartdeskApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SmartdeskApplication.class, args);
+		SpringApplication.run(SmartdeskApplication.class, args); //to run docker-compose up
 	}
 
 }
