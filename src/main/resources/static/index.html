@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartDesk Login</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background: #f5f5f5;
+    display: flex; justify-content: center; align-items: center; height: 90vh;
+  }
+  #loginForm {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    width: 320px;
+    text-align: center;
+  }
+  input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+  button {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #006666;
+  }
+  #loginMsg {
+    color: red;
+    margin-top: 10px;
+  }
+  </style>
+</head>
+<body>
+
+<div id="loginForm">
+  <h2>Login to SmartDesk</h2>
+  <input type="text" id="username" placeholder="Enter username" />
+  <input type="email" id="email" placeholder="Enter email" />
+  <button onclick="login()">Login</button>
+  <p id="loginMsg"></p>
+</div>
+
+<script>
+  function login() {
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const msg = document.getElementById("loginMsg");
+    msg.innerText = "";
+
+    if (!username || !email) {
+      msg.innerText = "Both fields are required.";
+      return;
+    }
+
+    fetch('/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}`
+    })
+    .then(res => res.text())
+    .then(response => {
+      if (response === 'success') {
+        // Redirect to dashboard page after successful login
+        window.location.href = 'dashboard.html';
+      } else {
+        msg.innerText = response;
+      }
+    })
+    .catch(() => {
+      msg.innerText = "Server error. Please try again later.";
+    });
+  }
+</script>
+
+</body>
+</html>

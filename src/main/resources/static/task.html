@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartDesk - To-Do Tasks</title>
+</head>
+<body>
+<h2>Add Task</h2>
+<input type="text" id="taskInput" placeholder="Enter a task">
+<button onclick="addTask()">Submit Task</button>
+
+<h3>All Tasks</h3>
+<ul id="taskList"></ul>
+
+
+<script>
+    function addTask() {
+        const desc = document.getElementById("taskInput").value;
+        fetch(`/task/add?description=${desc}`, { method: "POST" })
+            .then(res => res.text())
+            .then(alert);
+
+        setTimeout(loadTasks, 500);
+    }
+
+    function loadTasks() {
+        fetch("/task/all")
+            .then(res => res.json())
+            .then(tasks => {
+                const list = document.getElementById("taskList");
+                list.innerHTML = "";
+                tasks.forEach(task => {
+                    const li = document.createElement("li");
+                    li.innerText = `${task.description} [${task.completed ? "Done" : "Pending"}]`;
+
+                    if (!task.completed) {
+                        const btn = document.createElement("button");
+                        btn.innerText = "Mark as Done";
+                        btn.onclick = () => markDone(task.id);
+                        li.appendChild(btn);
+                    }
+
+                    list.appendChild(li);
+                });
+            });
+    }
+
+    function markDone(id) {
+        fetch(`/task/complete/${id}`, { method: "POST" })
+            .then(res => res.text())
+            .then(alert);
+
+        setTimeout(loadTasks, 500);
+    }
+
+    window.onload = loadTasks;
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartDesk - Mood Journal</title>
+    <style>
+        textarea { width: 300px; height: 150px; }
+        button { margin-top: 10px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+<h2>Mood Journal</h2>
+<textarea id="text" placeholder="How do you feel today?"></textarea><br>
+<button onclick="submitMood()">Submit Mood</button>
+<p id="msg"></p>
+
+<script>
+        function submitMood() {
+            const text = document.getElementById("text").value;
+            fetch("/mood/submit?text=" + encodeURIComponent(text), {
+                method: "POST"
+            }).then(response => response.text())
+              .then(msg => {
+                  document.getElementById("msg").innerText = msg;
+                  document.getElementById("text").value = "";
+              });
+        }
+    </script>
+</body>
+</html>

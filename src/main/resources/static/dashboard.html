@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartDesk - Dashboard</title>
+  <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+
+<!-- 🔝 Navigation Bar -->
+<nav class="navbar">
+  <div class="nav-logo">SmartDesk</div>
+  <ul class="nav-links">
+    <li id="nav-home" class="active" onclick="showSection('home')">Home</li>
+    <li id="nav-mood" onclick="showSection('mood')">Mood Journal</li>
+    <li id="nav-tasks" onclick="showSection('tasks')">Task Manager</li>
+    <li id="nav-about" onclick="showSection('about')">About</li>
+    <li id="nav-contact" onclick="showSection('contact')">Contact</li>
+  </ul>
+</nav>
+
+<!-- 🏠 HOME SECTION -->
+<div id="homeSection">
+  <section id="thoughtCard">
+    <h2>💡 Thought of the Day</h2>
+    <p id="thought">Loading...</p>
+  </section>
+
+  <section id="focusTimerCard">
+    <h2>⏳ Focus Timer</h2>
+    <p id="focusTime">25:00</p>
+    <button onclick="startFocus()">▶️ Start</button>
+    <button onclick="resetFocus()">⏹ Reset</button>
+  </section>
+
+  <!-- 🧾 FLOATING ACTIVITY FEED -->
+  <div id="floatingActivityFeed">
+    <h3>🧾 Activity Feed</h3>
+    <ul id="activityList"></ul>
+  </div>
+</div>
+
+<!-- 💬 MOOD JOURNAL SECTION -->
+<div id="moodSection" style="display:none;">
+  <section>
+    <h2>💬 Mood Journal</h2>
+    <div class="input-group-vertical">
+      <textarea id="moodInput" placeholder="How are you feeling today?" rows="4"></textarea>
+      <button onclick="submitMood()">Submit Mood</button>
+    </div>
+    <p id="moodMessage" style="margin-top: 12px; color: #00695c; font-weight: 500;"></p>
+  </section>
+</div>
+
+
+<!-- ✅ TASK MANAGER SECTION -->
+<div id="tasksSection" style="display: none;">
+  <section>
+    <h2>📋 To-Do Task Manager</h2>
+    <div class="input-group">
+      <input type="text" id="taskInput" placeholder="Enter a new task">
+      <button onclick="addTask()">Add Task</button>
+    </div>
+    <h3>Your Tasks</h3>
+    <ul id="taskList"></ul>
+  </section>
+</div>
+
+<section id="aboutSection" style="display: none;">
+  <h2>ℹ️ About </h2>
+  <p>
+    <strong>SmartDesk</strong> is your intelligent productivity companion designed to empower individuals with tools for mindful working, task management, emotional well-being, and real-time activity tracking — all in one seamless web platform.
+  </p>
+
+  <p>
+    Built using <strong>Spring Boot</strong> and integrated with <strong>Apache Kafka</strong> for real-time event streaming, SmartDesk ensures a responsive and interactive experience. It blends modern UI design with backend efficiency to help you stay on track and emotionally balanced throughout your day.
+  </p>
+
+  <h3> Key Features:</h3>
+  <ul>
+    <li><strong> Thought of the Day</strong> — Get inspired every morning with curated motivational quotes.</li>
+    <li><strong> Focus Timer</strong> — Apply the Pomodoro technique to stay concentrated and reduce burnout.</li>
+    <li><strong> Mood Journal</strong> — Track your emotions and receive uplifting responses based on your mood input.</li>
+    <li><strong> Task Manager</strong> — Plan, track, and mark your daily tasks with ease and clarity.</li>
+    <li><strong> Activity Feed</strong> — View real-time logs of your interactions and completed goals.</li>
+  </ul>
+
+  <h3> Our Mission</h3>
+  <p>
+    Our goal is to help individuals enhance productivity while staying mentally resilient. We believe that great work emerges from clarity, calmness, and emotional awareness — not just checklists.
+  </p>
+
+  <h3> Technologies Used</h3>
+  <ul>
+    <li><strong>Spring Boot</strong> – Backend RESTful APIs</li>
+    <li><strong>Apache Kafka</strong> – Real-time event processing & logging</li>
+    <li><strong>HTML, CSS, JavaScript</strong> – Frontend UI</li>
+    <li><strong>MySQL</strong> – Persistent data storage</li>
+    <li><strong>Docker & Docker Compose</strong> – Containerized deployment</li>
+  </ul>
+
+  <p style="margin-top: 20px;">
+    Whether you're a student, developer, entrepreneur, or anyone aiming for balance and discipline — <strong>SmartDesk is here to assist you, uplift you, and grow with you</strong>.
+  </p>
+</section>
+
+<!-- 📞 CONTACT SECTION -->
+<div id="contactSection" style="display: none;">
+  <section>
+    <h2>📞 Contact Us</h2>
+
+    <p><strong>Email:</strong> <a href="mailto:support@smartdesk.ai">support@smartdesk.ai</a></p>
+    <p><strong>Phone:</strong> <a href="tel:+919523565296">+91 95235 65296</a></p>
+    <p><strong>Address:</strong> 3rd Floor, Innovation Hub, Bangalore, Karnataka, India - 560078</p>
+
+
+    <p>Have questions, suggestions, or feedback? We’d love to hear from you. Reach out anytime!</p>
+  </section>
+</div>
+
+<!-- 💬 Floating ASK AI Button -->
+<button id="askAiFloatingBtn" onclick="toggleChatbot()">💬 Ask AI</button>
+
+<!-- 💬 Floating Chat Window -->
+<div id="chatWindow" style="display: none;">
+  <div id="chatHeader">💬 Chat with AI</div>
+
+  <div id="chatMessages"></div>
+
+  <div id="chatInputArea">
+    <input type="text" id="userQuery" placeholder="Ask something...">
+    <button onclick="sendToGemini()">Send</button>
+  </div>
+</div>
+
+
+
+
+<!-- 🚪 Logout Button -->
+<button id="logoutBtn" onclick="logout()">Logout</button>
+
+<script src="script/main.js"></script>
+<script src="script/chatbot.js"></script>
+
+
+
+</body>
+</html>

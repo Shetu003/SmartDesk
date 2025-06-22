@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SmartDesk - Activity Feed</title>
+</head>
+<body>
+<h2>Activity Feed</h2>
+<ul id="activityList"></ul>
+
+<script>
+        function loadFeed() {
+            fetch("/activity/logs")
+                .then(res => res.json())
+                .then(logs => {
+                    const list = document.getElementById("activityList");
+                    list.innerHTML = "";
+                    logs.forEach(log => {
+                        const li = document.createElement("li");
+                        li.textContent = log;
+                        list.appendChild(li);
+                    });
+                });
+        }
+
+        // Refresh feed every 2 seconds
+        setInterval(loadFeed, 2000);
+        window.onload = loadFeed;
+    </script>
+</body>
+</html>
