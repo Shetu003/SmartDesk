@@ -385,3 +385,94 @@ button:hover {
 #chatInputArea button:hover {
   background-color: #00796b;
 }
+
+
+/* 👇👇👇 Keep all your existing styles above this line 👇👇👇 */
+/* (No changes have been made to your existing styles) */
+
+
+/* 📱 Mobile Devices (up to 768px wide) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  section, #activityFeed {
+    padding: 20px;
+    margin: 10px;
+    max-width: 100%;
+  }
+
+  .input-group-vertical,
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #homeSection {
+    margin-right: 0;
+  }
+
+  #floatingActivityFeed,
+  #chatWindow {
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+    height: auto;
+  }
+
+  #logoutBtn,
+  #askAiFloatingBtn {
+    position: static;
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+/* 📲 Tablets (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  section, #activityFeed {
+    padding: 25px 30px;
+    max-width: 90%;
+  }
+
+  .input-group {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  #floatingActivityFeed {
+    right: 10px;
+    width: 220px;
+  }
+
+  #homeSection {
+    margin-right: 240px;
+  }
+
+  #logoutBtn,
+  #askAiFloatingBtn {
+    bottom: 15px;
+    padding: 10px 16px;
+  }
+
+  #chatWindow {
+    width: 240px;
+    height: 280px;
+  }
+}
+
+/* 💻 Desktops and Large Screens (1025px and up) */
+/* (Your existing styles already cover this; no need to redefine) */

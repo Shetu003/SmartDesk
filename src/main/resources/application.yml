@@ -1,21 +1,19 @@
 spring:
-  application:
-    name: smartdesk
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}
 
-  h2:
-    console:
-      enabled: true
-
-  datasource:
-    url: jdbc:h2:mem:testdb
-
+---
+spring:
+  config:
+    activate:
+      on-profile: default
   kafka:
-    bootstrap-servers: kafka:9092
-    consumer:
-      group-id: smartdesk-group
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    bootstrap-servers: localhost:9092
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  kafka:
+    bootstrap-servers: dummy:9092
